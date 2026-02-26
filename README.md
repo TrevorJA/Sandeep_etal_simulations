@@ -25,11 +25,20 @@ python 03_run_simulations_parallel.py
 
 Set `USE_MPI = True` in scripts 02/03 for MPI parallelism (`mpirun -n N python ...`).
 
+## Directory Structure
+
+```
+pywrdrb/
+├── inputs/          # HDF5 input files (gage flows, catchment inflows, diversions)
+├── models/          # Model JSON files (temporary, cleaned after run)
+└── outputs/         # Simulation output HDF5
+```
+
 ## Outputs
 
-- `drb_streamflow_ensembles/hybrid_finetuned/gage_flow_mgd.hdf5`
-- `drb_streamflow_ensembles/hybrid_finetuned/catchment_inflow_mgd.hdf5`
-- `drb_streamflow_ensembles/hybrid_finetuned/predicted_inflows_mgd.hdf5`
-- `drb_streamflow_ensembles/hybrid_finetuned/diversion_{nyc,nj}_extrapolated_mgd.hdf5`
-- `drb_streamflow_ensembles/hybrid_finetuned/predicted_diversions_mgd.hdf5`
-- `outputs/sandeep_hybrid.hdf5`
+- `pywrdrb/inputs/gage_flow_mgd.hdf5`
+- `pywrdrb/inputs/catchment_inflow_mgd.hdf5`
+- `pywrdrb/inputs/predicted_inflows_mgd.hdf5`
+- `pywrdrb/inputs/diversion_{nyc,nj}_extrapolated_mgd.hdf5`
+- `pywrdrb/inputs/predicted_diversions_mgd.hdf5`
+- `pywrdrb/outputs/sandeep_hybrid.hdf5`

@@ -15,9 +15,9 @@ from pywrdrb.pywr_drb_node_data import obs_site_matches
 USE_MPI = False
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR = os.path.join(BASE_DIR, "drb_streamflow_ensembles", "hybrid_finetuned")
-GAGE_FLOW_FILE = os.path.join(DATA_DIR, "gage_flow_mgd.hdf5")
-CATCHMENT_INFLOW_FILE = os.path.join(DATA_DIR, "catchment_inflow_mgd.hdf5")
+INPUT_DIR = os.path.join(BASE_DIR, "pywrdrb", "inputs")
+GAGE_FLOW_FILE = os.path.join(INPUT_DIR, "gage_flow_mgd.hdf5")
+CATCHMENT_INFLOW_FILE = os.path.join(INPUT_DIR, "catchment_inflow_mgd.hdf5")
 FLOW_TYPE = "sandeep_hybrid"
 
 PYWRDRB_NODES = list(obs_site_matches.keys())
@@ -62,7 +62,7 @@ def compute_catchment_inflows():
 
 def register_flow_type():
     pn_config = pywrdrb.get_pn_config()
-    pn_config[f"flows/{FLOW_TYPE}"] = os.path.abspath(DATA_DIR)
+    pn_config[f"flows/{FLOW_TYPE}"] = os.path.abspath(INPUT_DIR)
     pywrdrb.load_pn_config(pn_config)
 
 
@@ -128,7 +128,7 @@ def main():
 
     # Step 6: Predicted diversions
     print("Processing predicted diversions...")
-    nj_div_file = os.path.join(DATA_DIR, "diversion_nj_extrapolated_mgd.hdf5")
+    nj_div_file = os.path.join(INPUT_DIR, "diversion_nj_extrapolated_mgd.hdf5")
     div_pre = PredictedDiversionEnsemblePreprocessor(
         flow_type=FLOW_TYPE,
         ensemble_hdf5_file=nj_div_file,

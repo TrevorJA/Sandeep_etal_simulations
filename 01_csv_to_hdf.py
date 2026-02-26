@@ -7,7 +7,8 @@ from pywrdrb.pywr_drb_node_data import obs_site_matches
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CSV_DIR = os.path.join(BASE_DIR, "drb_streamflow_ensembles", "hybrid_finetuned")
-OUTPUT_FILE = os.path.join(CSV_DIR, "gage_flow_mgd.hdf5")
+INPUT_DIR = os.path.join(BASE_DIR, "pywrdrb", "inputs")
+OUTPUT_FILE = os.path.join(INPUT_DIR, "gage_flow_mgd.hdf5")
 BASIN_ATTRS_FILE = os.path.join(BASE_DIR, "basin_attributes.csv")
 
 # mm/day over 1 km2 -> MGD
@@ -47,6 +48,7 @@ def main():
 
     print(f"Processing {len(nodes_to_process)} nodes, {N_REALIZATIONS} realizations")
 
+    os.makedirs(INPUT_DIR, exist_ok=True)
     with h5py.File(OUTPUT_FILE, "w") as f:
         for node in nodes_to_process:
             df = read_node_csv(node)

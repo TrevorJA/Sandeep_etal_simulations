@@ -10,10 +10,10 @@ from pywrdrb.utils.hdf5 import get_hdf5_realization_numbers, combine_batched_hdf
 USE_MPI = False
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR = os.path.join(BASE_DIR, "drb_streamflow_ensembles", "hybrid_finetuned")
-OUTPUT_DIR = os.path.join(BASE_DIR, "outputs")
-MODEL_DIR = os.path.join(BASE_DIR, "models")
-CATCHMENT_INFLOW_FILE = os.path.join(DATA_DIR, "catchment_inflow_mgd.hdf5")
+INPUT_DIR = os.path.join(BASE_DIR, "pywrdrb", "inputs")
+OUTPUT_DIR = os.path.join(BASE_DIR, "pywrdrb", "outputs")
+MODEL_DIR = os.path.join(BASE_DIR, "pywrdrb", "models")
+CATCHMENT_INFLOW_FILE = os.path.join(INPUT_DIR, "catchment_inflow_mgd.hdf5")
 
 FLOW_TYPE = "sandeep_hybrid"
 START_DATE = "1945-01-01"
@@ -43,7 +43,7 @@ def get_parameter_subset_to_export(all_parameter_names, results_set_subset):
 
 def register_flow_type():
     pn_config = pywrdrb.get_pn_config()
-    pn_config[f"flows/{FLOW_TYPE}"] = os.path.abspath(DATA_DIR)
+    pn_config[f"flows/{FLOW_TYPE}"] = os.path.abspath(INPUT_DIR)
     pywrdrb.load_pn_config(pn_config)
 
 
