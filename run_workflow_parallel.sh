@@ -22,7 +22,8 @@ mkdir -p logs pywrdrb/{inputs,outputs,models} figures
 
 # Execute workflow
 [ "$PREP" = true ] && python3 01_csv_to_hdf.py
-[ "$PREP" = true ] && mpirun -np $np python3 02_prepare_inputs.py
-[ "$SIMULATE" = true ] && mpirun -np $np python3 03_run_simulations_parallel.py
+[ "$PREP" = true ] && python3 02_calc_catchment_inflow.py
+[ "$PREP" = true ] && mpirun -np $np python3 03_prepare_inputs.py
+[ "$SIMULATE" = true ] && mpirun -np $np python3 04_run_simulations_parallel.py
 
 echo "Workflow complete."

@@ -7,7 +7,7 @@ import numpy as np
 import pywrdrb
 from pywrdrb.utils.hdf5 import get_hdf5_realization_numbers, combine_batched_hdf5_outputs
 
-USE_MPI = False
+USE_MPI = True
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 INPUT_DIR = os.path.join(BASE_DIR, "pywrdrb", "inputs")
