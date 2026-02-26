@@ -20,7 +20,7 @@ N_REALIZATIONS = 160
 
 def load_drainage_areas():
     df = pd.read_csv(BASIN_ATTRS_FILE)
-    df["name"] = df["name"].astype(str)
+    df["name"] = df["name"].astype(str).str.zfill(8)
     return dict(zip(df["name"], df["drainage_area"]))
 
 
