@@ -3,3 +3,6 @@ outputs/
 models/
 *.hdf5
 __pycache__/
+venv/
+logs/
+figures/pywrdrb/

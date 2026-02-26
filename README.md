@@ -10,20 +10,25 @@ Pywrdrb simulations using hybrid fine-tuned ensemble streamflow data (160 member
 
 ## Usage
 
-Run scripts in order:
+Install dependencies (pywrdrb).  On Hopper:
 
 ```bash
-# 1. Convert CSVs to HDF5 (mm/day -> MGD)
-python 01_csv_to_hdf.py
+# setup env
+module load python/3.11.5
+python3 -m venv venv
+source venv/bin/activate
 
-# 2. Generate catchment inflows, predicted inflows, and diversions
-python 02_prepare_inputs.py
-
-# 3. Run pywrdrb simulations
-python 03_run_simulations_parallel.py
+# install pywrdrb
+pip install git+https://github.com/Pywr-DRB/Pywr-DRB.git
 ```
 
-Set `USE_MPI = True` in scripts 02/03 for MPI parallelism (`mpirun -n N python ...`).
+
+Run the full workflow:
+
+```bash
+sbatch run_workflow_parallel.sh
+```
+
 
 ## Directory Structure
 
