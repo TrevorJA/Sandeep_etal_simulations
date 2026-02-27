@@ -51,13 +51,20 @@ def main():
     os.makedirs(INPUT_DIR, exist_ok=True)
     with h5py.File(OUTPUT_FILE, "w") as f:
         for node in nodes_to_process:
-            df = read_node_csv(node)
-            area = areas[str(node)]
+            
+            ### NOTE: For delDRCanal, use delTrenton data
+            if node == "delDRCanal":
+                df = read_node_csv("delTrenton")
+                area = areas["delTrenton"]
+            else:
+                df = read_node_csv(node)
+                area = areas[str(node)]
+    
             df = df * area * MM_PER_DAY_KM2_TO_MGD
             df = df.fillna(0.0)
 
             grp = f.create_group(str(node))
-            grp.attrs["column_labels"] = realization_labels + ["date"]
+            grp.attrs["column_labels"] = realization_labels
 
             dates = df.index.strftime("%Y-%m-%d").tolist()
             grp.create_dataset("date", data=dates, compression="gzip")
