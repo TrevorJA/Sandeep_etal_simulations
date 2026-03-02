@@ -4,18 +4,12 @@ import numpy as np
 import pandas as pd
 import h5py
 from pywrdrb.pywr_drb_node_data import obs_site_matches
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-CSV_DIR = os.path.join(BASE_DIR, "drb_streamflow_ensembles", "hybrid_finetuned")
-INPUT_DIR = os.path.join(BASE_DIR, "pywrdrb", "inputs")
-OUTPUT_FILE = os.path.join(INPUT_DIR, "gage_flow_mgd.hdf5")
-BASIN_ATTRS_FILE = os.path.join(BASE_DIR, "basin_attributes.csv")
+from config import CSV_DIR, INPUT_DIR, BASIN_ATTRS_FILE, N_REALIZATIONS, GAGE_FLOW_FILE
 
 # mm/day over 1 km2 -> MGD
 MM_PER_DAY_KM2_TO_MGD = 0.264172
 
 PYWRDRB_NODES = list(obs_site_matches.keys())
-N_REALIZATIONS = 160
 
 
 def load_drainage_areas():
@@ -49,9 +43,9 @@ def main():
     print(f"Processing {len(nodes_to_process)} nodes, {N_REALIZATIONS} realizations")
 
     os.makedirs(INPUT_DIR, exist_ok=True)
-    with h5py.File(OUTPUT_FILE, "w") as f:
+    with h5py.File(GAGE_FLOW_FILE, "w") as f:
         for node in nodes_to_process:
-            
+
             ### NOTE: For delDRCanal, use delTrenton data
             if node == "delDRCanal":
                 df = read_node_csv("delTrenton")
@@ -59,7 +53,7 @@ def main():
             else:
                 df = read_node_csv(node)
                 area = areas[str(node)]
-    
+
             df = df * area * MM_PER_DAY_KM2_TO_MGD
             df = df.fillna(0.0)
 
@@ -74,7 +68,7 @@ def main():
 
             print(f"  {node}: {len(dates)} days, area={area:.1f} km2")
 
-    print(f"Wrote {OUTPUT_FILE}")
+    print(f"Wrote {GAGE_FLOW_FILE}")
 
 
 if __name__ == "__main__":

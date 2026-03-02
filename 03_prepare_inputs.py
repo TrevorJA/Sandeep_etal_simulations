@@ -7,14 +7,9 @@ from pywrdrb.pre import (
     ExtrapolatedDiversionEnsemblePreprocessor,
     PredictedDiversionEnsemblePreprocessor,
 )
+from config import INPUT_DIR, GAGE_FLOW_FILE, CATCHMENT_INFLOW_FILE, FLOW_TYPE
 
 USE_MPI = True
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-INPUT_DIR = os.path.join(BASE_DIR, "pywrdrb", "inputs")
-GAGE_FLOW_FILE = os.path.join(INPUT_DIR, "gage_flow_mgd.hdf5")
-CATCHMENT_INFLOW_FILE = os.path.join(INPUT_DIR, "catchment_inflow_mgd.hdf5")
-FLOW_TYPE = "sandeep_hybrid"
 
 
 def register_flow_type():

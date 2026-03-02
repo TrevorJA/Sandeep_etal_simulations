@@ -5,4 +5,5 @@ models/
 __pycache__/
 venv/
 logs/
-figures/pywrdrb/
+figures/
+pywrdrb/

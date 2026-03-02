@@ -16,8 +16,12 @@ CSV_TO_HDF=${CSV_TO_HDF:-true}
 PREP=${PREP:-true}
 SIMULATE=${SIMULATE:-true}
 
-# Create directories
-mkdir -p logs pywrdrb/{inputs,outputs,models} figures
+# Create directories (dataset-specific paths are under pywrdrb/<flow_type>/)
+PYWRDRB_DIR=$(python3 -c "from config import PYWRDRB_DIR; print(PYWRDRB_DIR)")
+FLOW_TYPE=$(python3 -c "from config import FLOW_TYPE; print(FLOW_TYPE)")
+mkdir -p logs "$PYWRDRB_DIR"/{inputs,outputs,models}
+echo "Dataset: $FLOW_TYPE"
+echo "Output dir: $PYWRDRB_DIR"
 
 
 # Execute workflow

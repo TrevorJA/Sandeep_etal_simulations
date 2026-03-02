@@ -6,16 +6,10 @@ import math
 import numpy as np
 import pywrdrb
 from pywrdrb.utils.hdf5 import get_hdf5_realization_numbers, combine_batched_hdf5_outputs
+from config import INPUT_DIR, OUTPUT_DIR, MODEL_DIR, CATCHMENT_INFLOW_FILE, FLOW_TYPE
 
 USE_MPI = True
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-INPUT_DIR = os.path.join(BASE_DIR, "pywrdrb", "inputs")
-OUTPUT_DIR = os.path.join(BASE_DIR, "pywrdrb", "outputs")
-MODEL_DIR = os.path.join(BASE_DIR, "pywrdrb", "models")
-CATCHMENT_INFLOW_FILE = os.path.join(INPUT_DIR, "catchment_inflow_mgd.hdf5")
-
-FLOW_TYPE = "sandeep_hybrid"
 START_DATE = "1945-01-01"
 END_DATE = "2018-12-31"
 N_REALIZATIONS_PER_BATCH = 5

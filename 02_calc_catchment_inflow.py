@@ -10,11 +10,7 @@ import h5py
 from pywrdrb.pre.flows import _subtract_upstream_catchment_inflows
 from pywrdrb.utils.hdf5 import get_hdf5_realization_numbers, extract_realization_from_hdf5
 from pywrdrb.pywr_drb_node_data import obs_site_matches
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-INPUT_DIR = os.path.join(BASE_DIR, "pywrdrb", "inputs")
-GAGE_FLOW_FILE = os.path.join(INPUT_DIR, "gage_flow_mgd.hdf5")
-CATCHMENT_INFLOW_FILE = os.path.join(INPUT_DIR, "catchment_inflow_mgd.hdf5")
+from config import GAGE_FLOW_FILE, CATCHMENT_INFLOW_FILE
 
 PYWRDRB_NODES = list(obs_site_matches.keys())
 
@@ -51,7 +47,7 @@ def compute_catchment_inflows():
         if (i + 1) % 20 == 0 or i == 0:
             print(f"  Computed realization {i + 1}/{len(realization_ids)}")
 
-    # Pass 3: write only kept realizations
+    # Pass 2: write all realizations
     realization_labels = [str(r) for r in realization_ids]
     with h5py.File(CATCHMENT_INFLOW_FILE, "w") as f_out:
         for node in PYWRDRB_NODES:
