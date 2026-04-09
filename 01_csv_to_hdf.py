@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import h5py
 from pywrdrb.pywr_drb_node_data import obs_site_matches
-from config import CSV_DIR, INPUT_DIR, BASIN_ATTRS_FILE, N_REALIZATIONS, GAGE_FLOW_FILE
+from config import CSV_DIR, INPUT_DIR, BASIN_ATTRS_FILE, N_REALIZATIONS, GAGE_FLOW_FILE, CSV_UNITS
 
 # mm/day over 1 km2 -> MGD
 MM_PER_DAY_KM2_TO_MGD = 0.264172
@@ -54,7 +54,8 @@ def main():
                 df = read_node_csv(node)
                 area = areas[str(node)]
 
-            df = df * area * MM_PER_DAY_KM2_TO_MGD
+            if CSV_UNITS == "mm_per_day_per_km2":
+                df = df * area * MM_PER_DAY_KM2_TO_MGD
             df = df.fillna(0.0)
 
             grp = f.create_group(str(node))

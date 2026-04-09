@@ -107,7 +107,7 @@ def run_simulations():
             options={
                 "inflow_ensemble_indices": indices,
                 "nyc_nj_demand_source": "custom",
-                "flow_prediction_mode": "regression_disagg",
+                "flow_prediction_mode": "perfect_foresight",
             },
         )
 

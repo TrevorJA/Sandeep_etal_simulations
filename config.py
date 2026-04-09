@@ -4,13 +4,14 @@ import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # ---- Dataset selection ----
-# Options: "hybrid_finetuned" (160 members), "lstm_model" (128 members)
-ENSEMBLE_DATASET = "lstm_model"
+# Options: "differentiable_model" (160 members), "lstm_model" (128 members)
+ENSEMBLE_DATASET = "differentiable_model"
 
 DATASET_CONFIG = {
-    "hybrid_finetuned": {"n_realizations": 160, "flow_type": "ensemble_hybrid_finetuned"},
-    "lstm_model": {"n_realizations": 128, "flow_type": "ensemble_lstm_model"},
+    "differentiable_model": {"n_realizations": 160, "flow_type": "ensemble_differentiable_model", "csv_units": "MGD"},
+    "lstm_model": {"n_realizations": 128, "flow_type": "ensemble_lstm_model", "csv_units": "MGD"},
 }
+CSV_UNITS = DATASET_CONFIG[ENSEMBLE_DATASET]["csv_units"]
 
 N_REALIZATIONS = DATASET_CONFIG[ENSEMBLE_DATASET]["n_realizations"]
 FLOW_TYPE = DATASET_CONFIG[ENSEMBLE_DATASET]["flow_type"]
