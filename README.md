@@ -59,10 +59,6 @@ sbatch --export=ALL,CSV_TO_HDF=true run_workflow_parallel.sh
 3. `03_prepare_inputs.py` - Generate predicted inflows, diversions (MPI-parallel)
 4. `04_run_simulations_parallel.py` - Run Pywr-DRB simulations (MPI-parallel)
 
-## MPI Notes
-
-- Uses single-node MPI (`--nodes=1`, 35 ranks) to avoid cross-node OpenMPI communication issues on Hopper.
-- Scripts 03 and 04 are MPI-parallel; 01 and 02 run serially.
 
 ## Directory Structure
 
@@ -73,3 +69,13 @@ pywrdrb/<flow_type>/
   outputs/         # Simulation output HDF5
 figures/<flow_type>/  # Diagnostic and analysis figures
 ```
+
+## Loading and using output data
+
+
+
+
+## MPI Notes
+
+- Uses single-node MPI (`--nodes=1`, 35 ranks) to avoid cross-node OpenMPI communication issues on Hopper.
+- Scripts 03 and 04 are MPI-parallel; 01 and 02 run serially.
