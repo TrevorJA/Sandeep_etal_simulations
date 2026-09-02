@@ -13,7 +13,7 @@ Configured via `ENSEMBLE_DATASET` in `config.py`:
 
 ## Requirements
 
-- [Pywr-DRB](https://github.com/Pywr-DRB/Pywr-DRB) (`add_perfect_foresight_mode` branch)
+- [Pywr-DRB v2.2](https://github.com/Pywr-DRB/Pywr-DRB)
 - Ensemble CSVs in `drb_streamflow_ensembles/<dataset>/`
 - `basin_attributes.csv` (drainage areas for unit conversion)
 
@@ -26,9 +26,8 @@ module load python/3.11.5
 python3 -m venv venv
 source venv/bin/activate
 
-# install pywrdrb 
-# IMPORTANT: this data only works with the add_perfect_foresight_mode branch
-pip install "git+https://github.com/Pywr-DRB/Pywr-DRB.git@add_perfect_foresight_mode"
+# install pywrdrb v2.2 (current master branch on Pywr-DRB repo)
+pip install git+https://github.com/Pywr-DRB/Pywr-DRB.git
 ```
 
 ## Usage
